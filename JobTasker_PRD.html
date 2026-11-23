@@ -1,0 +1,540 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JobTasker - Product Requirements Document</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #1F21A8;
+            border-bottom: 3px solid #4e5ae8;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h2 {
+            color: #4e5ae8;
+            border-bottom: 2px solid #8687E7;
+            padding-bottom: 8px;
+            margin-top: 25px;
+        }
+        h3 {
+            color: #8687E7;
+            margin-top: 20px;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #4e5ae8;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        ul, ol {
+            margin-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4e5ae8;
+            color: white;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #1F21A8, #4e5ae8);
+            color: white;
+            border-radius: 10px;
+        }
+        .header h1 {
+            color: white;
+            border: none;
+            margin: 0;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #4e5ae8;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+        blockquote {
+            border-left: 4px solid #8687E7;
+            padding-left: 20px;
+            margin-left: 0;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>JobTasker</h1>
+        <p style="font-size: 1.2em; margin: 10px 0;">Product Requirements Document</p>
+        <p>Version 1.0 | January 14, 2026</p>
+    </div>
+    
+    <h1 id="jobtasker-product-requirements-document">JobTasker - Product Requirements Document</h1>
+
+<h2 id="executive-summary">Executive Summary</h2>
+
+<p><strong>Product Name:</strong> JobTasker<br />
+<strong>Version:</strong> 1.0<br />
+<strong>Platform:</strong> Android (Google Play Store)<br />
+<strong>Category:</strong> Productivity &amp; Job Search<br />
+<strong>Target Audience:</strong> Job seekers, professionals, students, and anyone managing tasks and job applications</p>
+
+<h2 id="product-overview">Product Overview</h2>
+
+<p>JobTasker is an all-in-one productivity application that combines task management, job application tracking, and focus sessions into a single, unified platform. It eliminates the need for multiple apps by providing a comprehensive solution for organizing daily tasks while actively searching for employment opportunities.</p>
+
+<h2 id="product-vision">Product Vision</h2>
+
+<p>To become the go-to productivity tool for job seekers and professionals who want to master their daily tasks, track their job search progress, and maintain focus on their career goals—all in one beautiful, privacy-first application.</p>
+
+<h2 id="core-problem-statement">Core Problem Statement</h2>
+
+<p>Job seekers and busy professionals face several challenges:
+- <strong>Scattered Data:</strong> Tasks in one app, job applications in spreadsheets, focus timers elsewhere
+- <strong>Missed Deadlines:</strong> No centralized system for tracking application deadlines and interview schedules
+- <strong>Lack of Focus:</strong> Constant distractions prevent deep work needed for skill development
+- <strong>Poor Organization:</strong> Difficulty maintaining an overview of job search progress</p>
+
+<h2 id="solution">Solution</h2>
+
+<p>JobTasker provides a unified workspace that integrates:
+1. <strong>Task Management</strong> - Daily to-do lists with reminders
+2. <strong>Job Application Tracking</strong> - Comprehensive job search management
+3. <strong>Focus Sessions</strong> - Dedicated focus mode for deep work
+4. <strong>Visual Dashboard</strong> - At-a-glance progress tracking
+5. <strong>Privacy-First Design</strong> - Local data storage</p>
+
+<h2 id="key-features">Key Features</h2>
+
+<h3 id="1-job-application-tracking">1. Job Application Tracking</h3>
+
+<p><strong>Purpose:</strong> Maintain a detailed log of every job application</p>
+
+<p><strong>Features:</strong>
+- Add job applications with company name, position, and application date
+- Track application status: Pending, Interview, Rejected, Accepted
+- Store job URLs and important notes
+- Filter and search through applications
+- Visual status indicators with color coding
+- Application statistics and analytics</p>
+
+<p><strong>User Flow:</strong>
+1. User taps "Add Application" button
+2. Fills in job details (company, position, URL, notes)
+3. Selects initial status (default: Pending)
+4. Application is saved and displayed in the applications list
+5. User can update status as the application progresses</p>
+
+<h3 id="2-task-management">2. Task Management</h3>
+
+<p><strong>Purpose:</strong> Organize daily tasks and to-dos</p>
+
+<p><strong>Features:</strong>
+- Create, edit, and delete tasks
+- Set task priorities and categories
+- Mark tasks as complete
+- Task reminders and notifications
+- Task categories and tags
+- Daily, weekly, and monthly task views
+- Task statistics (completed vs. pending)</p>
+
+<p><strong>User Flow:</strong>
+1. User creates a new task with title and description
+2. Sets optional priority, category, and due date
+3. Task appears in the task list
+4. User can check off completed tasks
+5. Completed tasks move to history</p>
+
+<h3 id="3-focus-mode">3. Focus Mode</h3>
+
+<p><strong>Purpose:</strong> Enable distraction-free deep work sessions</p>
+
+<p><strong>Features:</strong>
+- Customizable focus timer (Pomodoro-style)
+- Focus session tracking
+- Break reminders
+- Focus statistics (total time focused)
+- Ambient sounds or white noise (optional)
+- Do Not Disturb integration</p>
+
+<p><strong>User Flow:</strong>
+1. User selects focus duration (e.g., 25 minutes)
+2. Starts focus session
+3. Timer counts down with visual progress
+4. Notification when session completes
+5. Option to take a break or start another session</p>
+
+<h3 id="4-smart-reminders">4. Smart Reminders</h3>
+
+<p><strong>Purpose:</strong> Never miss important deadlines or follow-ups</p>
+
+<p><strong>Features:</strong>
+- Local notification system
+- Flexible reminder scheduling
+- Reminder for tasks and applications
+- Snooze functionality
+- Customizable reminder tones
+- Reminder history</p>
+
+<p><strong>User Flow:</strong>
+1. User sets a reminder when creating/editing task or application
+2. Chooses date and time
+3. Receives notification at scheduled time
+4. Can snooze or mark as complete from notification</p>
+
+<h3 id="5-visual-dashboard">5. Visual Dashboard</h3>
+
+<p><strong>Purpose:</strong> Provide at-a-glance overview of productivity</p>
+
+<p><strong>Features:</strong>
+- Task completion statistics
+- Application status breakdown (pie charts)
+- Focus time analytics
+- Weekly/monthly progress graphs
+- Streak tracking
+- Achievement badges</p>
+
+<p><strong>User Flow:</strong>
+1. User opens dashboard/home screen
+2. Views key metrics and statistics
+3. Can tap on charts for detailed breakdowns
+4. Tracks progress over time</p>
+
+<h3 id="6-theme-customization">6. Theme Customization</h3>
+
+<p><strong>Purpose:</strong> Personalize the user experience</p>
+
+<p><strong>Features:</strong>
+- Light and Dark mode
+- Custom color accents
+- Multiple theme presets
+- Font size adjustments
+- Layout customization</p>
+
+<p><strong>User Flow:</strong>
+1. User navigates to Settings
+2. Selects Theme/Appearance
+3. Chooses light/dark mode
+4. Selects custom accent color
+5. Changes apply immediately</p>
+
+<h3 id="7-privacy-first-design">7. Privacy-First Design</h3>
+
+<p><strong>Purpose:</strong> Ensure user data security and privacy</p>
+
+<p><strong>Features:</strong>
+- Local data storage (no cloud sync required)
+- No user accounts needed
+- No data collection or tracking
+- Optional data export
+- Secure local database</p>
+
+<p><strong>Implementation:</strong>
+- All data stored locally using SQLite/Hive
+- No internet permission required for core features
+- Optional backup to local storage</p>
+
+<h2 id="technical-specifications">Technical Specifications</h2>
+
+<h3 id="platform">Platform</h3>
+
+<ul>
+<li><strong>Primary:</strong> Android (Flutter)</li>
+<li><strong>Minimum SDK:</strong> Android 5.0 (API 21)</li>
+<li><strong>Target SDK:</strong> Latest Android version</li>
+</ul>
+
+<h3 id="technology-stack">Technology Stack</h3>
+
+<ul>
+<li><strong>Framework:</strong> Flutter/Dart</li>
+<li><strong>Database:</strong> Local storage (SQLite/Hive)</li>
+<li><strong>Notifications:</strong> Flutter Local Notifications</li>
+<li><strong>State Management:</strong> Provider/Riverpod/Bloc</li>
+<li><strong>UI:</strong> Material Design 3</li>
+</ul>
+
+<h3 id="data-models">Data Models</h3>
+
+<h4 id="task">Task</h4>
+
+<pre><code>- id: String (UUID)
+- title: String
+- description: String
+- category: String
+- priority: Enum (Low, Medium, High)
+- dueDate: DateTime
+- isCompleted: Boolean
+- createdAt: DateTime
+- reminder: DateTime (optional)
+</code></pre>
+
+<h4 id="job-application">Job Application</h4>
+
+<pre><code>- id: String (UUID)
+- companyName: String
+- position: String
+- applicationDate: DateTime
+- status: Enum (Pending, Interview, Rejected, Accepted)
+- jobUrl: String (optional)
+- notes: String
+- reminder: DateTime (optional)
+- createdAt: DateTime
+</code></pre>
+
+<h4 id="focus-session">Focus Session</h4>
+
+<pre><code>- id: String (UUID)
+- duration: int (minutes)
+- startTime: DateTime
+- endTime: DateTime
+- completed: Boolean
+</code></pre>
+
+<h2 id="user-interface-design">User Interface Design</h2>
+
+<h3 id="design-principles">Design Principles</h3>
+
+<ol>
+<li><strong>Clean &amp; Modern:</strong> Minimalist interface with focus on content</li>
+<li><strong>Intuitive Navigation:</strong> Bottom navigation bar for main sections</li>
+<li><strong>Consistent:</strong> Material Design 3 guidelines</li>
+<li><strong>Accessible:</strong> High contrast, readable fonts, proper spacing</li>
+<li><strong>Delightful:</strong> Smooth animations and micro-interactions</li>
+</ol>
+
+<h3 id="color-scheme">Color Scheme</h3>
+
+<ul>
+<li><strong>Primary:</strong> #1F21A8 (Deep Blue)</li>
+<li><strong>Secondary:</strong> #4e5ae8 (Bright Blue)</li>
+<li><strong>Accent:</strong> #8687E7 (Purple)</li>
+<li><strong>Background (Light):</strong> #F8FBFC</li>
+<li><strong>Background (Dark):</strong> #363636</li>
+<li><strong>Success:</strong> Green</li>
+<li><strong>Warning:</strong> Orange</li>
+<li><strong>Error:</strong> Red</li>
+</ul>
+
+<h3 id="typography">Typography</h3>
+
+<ul>
+<li><strong>Font Family:</strong> Nunito</li>
+<li><strong>Headings:</strong> Bold, 24-32px</li>
+<li><strong>Body:</strong> Regular, 14-16px</li>
+<li><strong>Captions:</strong> Regular, 12px</li>
+</ul>
+
+<h3 id="navigation-structure">Navigation Structure</h3>
+
+<pre><code>Bottom Navigation:
+├── Home (Dashboard)
+├── Tasks
+├── Applications
+├── Focus
+└── Profile/Settings
+</code></pre>
+
+<h2 id="user-personas">User Personas</h2>
+
+<h3 id="persona-1-recent-graduate">Persona 1: Recent Graduate</h3>
+
+<ul>
+<li><strong>Name:</strong> Sarah, 23</li>
+<li><strong>Goal:</strong> Find first job after graduation</li>
+<li><strong>Pain Points:</strong> Overwhelmed by job search, losing track of applications</li>
+<li><strong>Use Case:</strong> Tracks 20+ applications, sets reminders for follow-ups, uses focus mode for interview prep</li>
+</ul>
+
+<h3 id="persona-2-career-switcher">Persona 2: Career Switcher</h3>
+
+<ul>
+<li><strong>Name:</strong> Mike, 35</li>
+<li><strong>Goal:</strong> Transition to new industry</li>
+<li><strong>Pain Points:</strong> Balancing current job while searching, needs to upskill</li>
+<li><strong>Use Case:</strong> Manages learning tasks, tracks applications, uses focus sessions for online courses</li>
+</ul>
+
+<h3 id="persona-3-busy-professional">Persona 3: Busy Professional</h3>
+
+<ul>
+<li><strong>Name:</strong> Lisa, 28</li>
+<li><strong>Goal:</strong> Stay organized and productive</li>
+<li><strong>Pain Points:</strong> Too many apps, wants simplicity</li>
+<li><strong>Use Case:</strong> Daily task management, occasional job browsing, focus sessions for projects</li>
+</ul>
+
+<h2 id="success-metrics">Success Metrics</h2>
+
+<h3 id="user-engagement">User Engagement</h3>
+
+<ul>
+<li>Daily Active Users (DAU)</li>
+<li>Weekly Active Users (WAU)</li>
+<li>Average session duration</li>
+<li>Feature usage rates</li>
+</ul>
+
+<h3 id="user-satisfaction">User Satisfaction</h3>
+
+<ul>
+<li>App Store rating (target: 4.5+)</li>
+<li>User reviews and feedback</li>
+<li>Net Promoter Score (NPS)</li>
+</ul>
+
+<h3 id="product-performance">Product Performance</h3>
+
+<ul>
+<li>App load time &lt; 2 seconds</li>
+<li>Crash-free rate &gt; 99.5%</li>
+<li>Notification delivery rate &gt; 95%</li>
+</ul>
+
+<h2 id="future-enhancements-post-mvp">Future Enhancements (Post-MVP)</h2>
+
+<h3 id="phase-2">Phase 2</h3>
+
+<ul>
+<li>Calendar integration</li>
+<li>Resume builder</li>
+<li>Interview preparation checklist</li>
+<li>Networking contacts management</li>
+</ul>
+
+<h3 id="phase-3">Phase 3</h3>
+
+<ul>
+<li>Cloud sync (optional)</li>
+<li>Cross-platform (iOS, Web)</li>
+<li>Team collaboration features</li>
+<li>AI-powered job recommendations</li>
+</ul>
+
+<h3 id="phase-4">Phase 4</h3>
+
+<ul>
+<li>Integration with job boards (LinkedIn, Indeed)</li>
+<li>Automated application tracking</li>
+<li>Interview scheduling assistant</li>
+<li>Career analytics and insights</li>
+</ul>
+
+<h2 id="privacy-security">Privacy &amp; Security</h2>
+
+<h3 id="data-protection">Data Protection</h3>
+
+<ul>
+<li>All data stored locally on device</li>
+<li>No user authentication required</li>
+<li>No data transmitted to external servers</li>
+<li>Optional encrypted backup</li>
+</ul>
+
+<h3 id="permissions-required">Permissions Required</h3>
+
+<ul>
+<li><strong>Notifications:</strong> For reminders and alerts</li>
+<li><strong>Storage:</strong> For data backup/export (optional)</li>
+</ul>
+
+<h3 id="compliance">Compliance</h3>
+
+<ul>
+<li>GDPR compliant (data stays on device)</li>
+<li>No personal data collection</li>
+<li>Transparent privacy policy</li>
+</ul>
+
+<h2 id="marketing-distribution">Marketing &amp; Distribution</h2>
+
+<h3 id="app-store-presence">App Store Presence</h3>
+
+<ul>
+<li><strong>Platform:</strong> Google Play Store</li>
+<li><strong>Category:</strong> Productivity</li>
+<li><strong>Keywords:</strong> task manager, job tracker, productivity, focus timer</li>
+<li><strong>Screenshots:</strong> 8 high-quality screenshots showcasing key features</li>
+<li><strong>Description:</strong> Clear, benefit-focused copy</li>
+</ul>
+
+<h3 id="target-markets">Target Markets</h3>
+
+<ul>
+<li>Primary: English-speaking countries (US, UK, Canada, Australia)</li>
+<li>Secondary: Global expansion with localization</li>
+</ul>
+
+<h2 id="support-documentation">Support &amp; Documentation</h2>
+
+<h3 id="in-app-help">In-App Help</h3>
+
+<ul>
+<li>Onboarding tutorial for new users</li>
+<li>Feature tooltips</li>
+<li>FAQ section</li>
+<li>Contact support option</li>
+</ul>
+
+<h3 id="external-resources">External Resources</h3>
+
+<ul>
+<li>Landing page with feature overview</li>
+<li>Privacy policy</li>
+<li>Terms of service</li>
+<li>Email support: karimabokamel74@gmail.com</li>
+<li>Phone support: +20 1148779202</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>JobTasker addresses a real need in the market by combining task management with job application tracking in a privacy-first, beautifully designed application. By focusing on simplicity, local data storage, and a unified user experience, JobTasker empowers users to take control of their productivity and career journey.</p>
+
+<p>The MVP focuses on core features that solve immediate user pain points, with a clear roadmap for future enhancements based on user feedback and market demand.</p>
+
+    
+    <div class="footer">
+        <p><strong>JobTasker</strong> - Master Your Tasks & Land Your Dream Job</p>
+        <p>Contact: karimabokamel74@gmail.com | +20 1148779202</p>
+        <p>© 2026 JobTasker. All rights reserved.</p>
+    </div>
+</body>
+</html>

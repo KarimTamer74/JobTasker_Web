@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobTasker - Manage Tasks & Find a Job</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1F21A8',
+                        secondary: '#4e5ae8',
+                        background: '#F8FBFC',
+                        dark: '#363636',
+                        light: '#F9FAFB',
+                        accent: '#8687E7',
+                        // Dark mode specific colors
+                        darkBackground: '#111827',
+                        darkCard: '#1F2937',
+                        darkText: '#F3F4F6',
+                        darkTextMuted: '#9CA3AF'
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        // Check local storage or system preference on load
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .hero-pattern {
+            background-color: #F8FBFC;
+            background-image: radial-gradient(#4e5ae8 0.5px, transparent 0.5px), radial-gradient(#4e5ae8 0.5px, #F8FBFC 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 1;
+        }
+
+        .dark .hero-pattern {
+            background-color: #111827;
+            background-image: radial-gradient(#4e5ae8 0.5px, transparent 0.5px), radial-gradient(#4e5ae8 0.5px, #111827 0.5px);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background text-dark antialiased overflow-x-hidden dark:bg-darkBackground dark:text-darkText transition-colors duration-300">
+
+    <!-- Navigation -->
+    <nav
+        class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 dark:bg-darkCard/80 dark:border-gray-700 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <img src="assets/app_icon.png" alt="JobTasker Logo" class="h-10 w-10">
+                    <span class="font-bold text-2xl text-primary dark:text-white">JobTasker</span>
+                </div>
+                <div class="hidden md:flex gap-8 items-center">
+                    <a href="#features"
+                        class="font-semibold text-gray-600 hover:text-primary transition dark:text-gray-300 dark:hover:text-white">Features</a>
+                    <a href="#how-it-works"
+                        class="font-semibold text-gray-600 hover:text-primary transition dark:text-gray-300 dark:hover:text-white">How
+                        it Works</a>
+                    <a href="#gallery"
+                        class="font-semibold text-gray-600 hover:text-primary transition dark:text-gray-300 dark:hover:text-white">Gallery</a>
+                    <a href="#contact"
+                        class="font-semibold text-gray-600 hover:text-primary transition dark:text-gray-300 dark:hover:text-white">Contact</a>
+
+                    <!-- Dark Mode Toggle -->
+                    <button onclick="toggleDarkMode()"
+                        class="p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-yellow-300 dark:hover:bg-gray-600 transition"
+                        aria-label="Toggle Dark Mode">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+                <a href="https://play.google.com/store/apps/details?id=com.karim.jobtasker" target="_blank"
+                    class="bg-primary text-white px-6 py-2.5 rounded-full font-bold hover:bg-blue-800 transition shadow-lg shadow-blue-500/30 transform hover:scale-105 duration-200">
+                    Get App
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-[0.03] hero-pattern"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 animate-fade-in-up">
+                    <div
+                        class="inline-flex items-center gap-2 bg-blue-50 text-secondary px-4 py-2 rounded-full text-sm font-bold tracking-wide dark:bg-blue-900/30 dark:text-blue-300">
+                        <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                        New: Version 1.0 is here
+                    </div>
+                    <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight text-gray-900 dark:text-white">
+                        Manage Your Tasks. <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Get Your
+                            Next Job.</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 max-w-lg leading-relaxed dark:text-gray-300">
+                        One easy app for your to-do list, your job search, and staying focused.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <a href="https://play.google.com/store/apps/details?id=com.karim.jobtasker" target="_blank"
+                            class="flex items-center justify-center gap-3 bg-primary text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-800 transition shadow-xl shadow-blue-500/20 transform hover:-translate-y-1">
+                            <i class="fab fa-google-play text-2xl"></i>
+                            <div class="text-left">
+                                <div class="text-xs font-normal opacity-80">GET IT ON</div>
+                                <div class="leading-none">Google Play</div>
+                            </div>
+                        </a>
+                        <a href="#features"
+                            class="flex items-center justify-center gap-2 bg-white text-gray-700 border border-gray-200 px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-50 transition transform hover:-translate-y-1 dark:bg-darkCard dark:text-white dark:border-gray-700 dark:hover:bg-gray-800">
+                            See How It Works
+                            <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                    </div>
+
+                </div>
+                <!-- Phone Mockup Area -->
+                <div class="relative lg:h-[800px] flex items-center justify-center">
+                    <!-- DecorElements -->
+                    <div
+                        class="absolute top-1/4 right-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob dark:opacity-10">
+                    </div>
+                    <div
+                        class="absolute top-1/4 left-0 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000 dark:opacity-10">
+                    </div>
+                    <div
+                        class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000 dark:opacity-10">
+                    </div>
+
+                    <!-- Phone Mockup -->
+                    <div
+                        class="relative z-10 w-[300px] h-[600px] bg-gray-900 rounded-[3rem] border-8 border-gray-900 shadow-2xl transform rotate-[-5deg] hover:rotate-0 transition duration-500">
+                        <div
+                            class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-gray-900 rounded-b-xl z-20">
+                        </div>
+                        <div class="w-full h-full rounded-[2.5rem] overflow-hidden bg-white dark:bg-gray-800">
+                            <img src="assets/onBoarding_first_page.png" alt="App Screenshot"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <!-- UI Floating Elements -->
+                        <div
+                            class="absolute top-20 -right-12 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce-slow dark:bg-darkCard dark:border dark:border-gray-700">
+                            <div
+                                class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 dark:bg-green-900/50 dark:text-green-400">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">Task Done</div>
+                                <div class="font-bold text-gray-800 dark:text-white">Update Resume</div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute bottom-32 -left-12 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce-slow animation-delay-1500 dark:bg-darkCard dark:border dark:border-gray-700">
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-primary dark:bg-blue-900/50 dark:text-blue-400">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">New Interview</div>
+                                <div class="font-bold text-gray-800 dark:text-white">Google - Senior Dev</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem / Solution -->
+    <section class="py-24 bg-white dark:bg-darkBackground transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Stop Using So Many Apps</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400">A to-do app for tasks. A spreadsheet for job
+                    applications. A timer for focus. That's too much. Let's make it simple.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div
+                    class="bg-gray-50 p-8 rounded-3xl hover:shadow-lg transition duration-300 border border-gray-100 dark:bg-darkCard dark:border-gray-700">
+                    <div
+                        class="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center text-red-500 text-2xl mb-6 dark:bg-red-900/30 dark:text-red-400">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Everything Scattered</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Tasks in one app, job links in another. It's easy to
+                        lose track of where you applied.</p>
+                </div>
+                <!-- Card 2 -->
+                <div
+                    class="bg-gray-50 p-8 rounded-3xl hover:shadow-lg transition duration-300 border border-gray-100 dark:bg-darkCard dark:border-gray-700">
+                    <div
+                        class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-500 text-2xl mb-6 dark:bg-orange-900/30 dark:text-orange-400">
+                        <i class="fas fa-bell-slash"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Missed Deadlines</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Without good reminders, it's easy to miss a deadline
+                        or an interview.</p>
+                </div>
+                <!-- Card 3 -->
+                <div
+                    class="bg-gray-50 p-8 rounded-3xl hover:shadow-lg transition duration-300 border border-gray-100 dark:bg-darkCard dark:border-gray-700">
+                    <div
+                        class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-500 text-2xl mb-6 dark:bg-purple-900/30 dark:text-purple-400">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Too Many Distractions</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Distractions make it hard to focus and learn new
+                        skills.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features"
+        class="py-24 bg-background relative overflow-hidden dark:bg-darkBackground transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20">
+                <span class="text-secondary font-bold tracking-wider uppercase text-sm">Features</span>
+                <h2 class="text-4xl font-extrabold mt-2 text-gray-900 dark:text-white">Built to Help You Get Things Done</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition border border-gray-100 dark:bg-darkCard dark:border-gray-700">
+                    <div class="w-12 h-12 mb-6 p-2 bg-blue-50 rounded-xl dark:bg-blue-900/30">
+                        <img src="assets/work_icon.svg" class="w-full h-full" alt="Job Icon">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Track Job Applications</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Keep a list of every job you apply for. See its
+                        status: Pending, Interview, Rejected, or Hired.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition border border-gray-100 dark:bg-darkCard dark:border-gray-700">
+                    <div class="w-12 h-12 mb-6 p-2 bg-green-50 rounded-xl dark:bg-green-900/30">
+                        <img src="assets/clock.svg" class="w-full h-full" alt="Clock Icon">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Smart Reminders</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Set reminders right on your phone. Never forget to
+                        follow up or get ready for an interview.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition border border-gray-100 dark:bg-darkCard dark:border-gray-700">
+                    <div class="w-12 h-12 mb-6 p-2 bg-yellow-50 rounded-xl dark:bg-yellow-900/30">
+                        <img src="assets/flash_icon.svg" class="w-full h-full" alt="Focus Icon">
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Focus Mode</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Use the built-in timer to block out distractions and
+                        get real work done.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition border border-gray-100 dark:bg-darkCard dark:border-gray-700">
+                    <div
+                        class="w-12 h-12 mb-6 flex items-center justify-center bg-purple-50 rounded-xl text-purple-600 dark:bg-purple-900/30 dark:text-purple-400">
+                        <i class="fas fa-chart-pie text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">See Your Progress</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Check your progress at a glance: tasks finished,
+                        jobs applied to.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition border border-gray-100 dark:bg-darkCard dark:border-gray-700">
+                    <div
+                        class="w-12 h-12 mb-6 flex items-center justify-center bg-pink-50 rounded-xl text-pink-600 dark:bg-pink-900/30 dark:text-pink-400">
+                        <i class="fas fa-paint-brush text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Make It Yours</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Switch between light and dark mode, and pick your
+                        favorite colors.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition border border-gray-100 dark:bg-darkCard dark:border-gray-700">
+                    <div
+                        class="w-12 h-12 mb-6 flex items-center justify-center bg-gray-100 rounded-xl text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Your Privacy Comes First</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Your data stays on your phone. We don't send it
+                        anywhere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: App Gallery Section (Mockups) -->
+    <section id="gallery" class="py-24 bg-white dark:bg-darkBackground transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-4 dark:text-white">Take a Look Inside</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">See how everything works together.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <!-- Image 1 -->
+                <div
+                    class="rounded-3xl overflow-hidden shadow-xl border border-gray-100 transform hover:scale-105 transition duration-300 dark:border-gray-700">
+                    <img src="assets/collection/Slide2.PNG" alt="App Screen 1" class="w-full h-auto object-cover">
+                </div>
+                <!-- Image 2 -->
+                <div
+                    class="rounded-3xl overflow-hidden shadow-xl border border-gray-100 transform hover:scale-105 transition duration-300 dark:border-gray-700">
+                    <img src="assets/collection/Slide3.PNG" alt="App Screen 2" class="w-full h-auto object-cover">
+                </div>
+                <!-- Image 3 -->
+                <div
+                    class="rounded-3xl overflow-hidden shadow-xl border border-gray-100 transform hover:scale-105 transition duration-300 dark:border-gray-700">
+                    <img src="assets/collection/Slide5.PNG" alt="App Screen 3" class="w-full h-auto object-cover">
+                </div>
+                <!-- Image 4 -->
+                <div
+                    class="rounded-3xl overflow-hidden shadow-xl border border-gray-100 transform hover:scale-105 transition duration-300 dark:border-gray-700">
+                    <img src="assets/collection/Slide7.PNG" alt="App Screen 4" class="w-full h-auto object-cover">
+                </div>
+                <!-- Image 5 -->
+                <div
+                    class="rounded-3xl overflow-hidden shadow-xl border border-gray-100 transform hover:scale-105 transition duration-300 dark:border-gray-700">
+                    <img src="assets/collection/Slide8.PNG" alt="App Screen 5" class="w-full h-auto object-cover">
+                </div>
+                <!-- Image 6 -->
+                <div
+                    class="rounded-3xl overflow-hidden shadow-xl border border-gray-100 transform hover:scale-105 transition duration-300 dark:border-gray-700">
+                    <img src="assets/collection/Slide10.PNG" alt="App Screen 6" class="w-full h-auto object-cover">
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="app-gallery.html"
+                    class="inline-flex items-center gap-2 bg-white text-primary border border-primary px-8 py-3 rounded-full font-bold text-lg hover:bg-primary hover:text-white transition shadow-lg dark:bg-transparent dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black">
+                    See All Screens
+                    <i class="fas fa-images"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Contact Section -->
+    <section id="contact" class="py-24 bg-gray-50 dark:bg-darkCard transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div
+                class="max-w-3xl mx-auto bg-white rounded-[2rem] shadow-xl p-10 md:p-16 border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4 dark:text-white">Get in Touch</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400">Got a question or some feedback? We'd love to
+                        hear from you.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <a href="mailto:karimabokamel74@gmail.com"
+                        class="flex items-center p-6 rounded-2xl bg-blue-50 hover:bg-blue-100 transition group dark:bg-gray-700 dark:hover:bg-gray-600">
+                        <div
+                            class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl mr-6 flex-shrink-0 group-hover:scale-110 transition">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="text-sm text-gray-500 font-bold uppercase tracking-wider dark:text-gray-400">
+                                Email Us</div>
+                            <div class="text-lg md:text-xl font-bold text-gray-900 dark:text-white break-all">
+                                karimabokamel74@gmail.com</div>
+                        </div>
+                    </a>
+
+                    <a href="tel:+201148779202"
+                        class="flex items-center p-6 rounded-2xl bg-green-50 hover:bg-green-100 transition group dark:bg-gray-700 dark:hover:bg-gray-600">
+                        <div
+                            class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center text-xl mr-6 flex-shrink-0 group-hover:scale-110 transition">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="text-sm text-gray-500 font-bold uppercase tracking-wider dark:text-gray-400">
+                                Call Us</div>
+                            <div class="text-lg md:text-xl font-bold text-gray-900 dark:text-white">+20 1148779202</div>
+                        </div>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/karim-tamer74" target="_blank"
+                        class="flex items-center p-6 rounded-2xl bg-blue-50 hover:bg-blue-100 transition group dark:bg-gray-700 dark:hover:bg-gray-600">
+                        <div
+                            class="w-12 h-12 bg-[#0077b5] text-white rounded-full flex items-center justify-center text-xl mr-6 flex-shrink-0 group-hover:scale-110 transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="text-sm text-gray-500 font-bold uppercase tracking-wider dark:text-gray-400">
+                                Connect</div>
+                            <div class="text-lg md:text-xl font-bold text-gray-900 dark:text-white">LinkedIn Profile
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section (Updated Link) -->
+    <section id="download" class="py-24 bg-primary relative overflow-hidden dark:bg-blue-900">
+        <div
+            class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]">
+        </div>
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <h2 class="text-4xl lg:text-5xl font-extrabold text-white mb-6">Ready to Get Organized?</h2>
+            <p class="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">Join others who use JobTasker to stay on top of
+                their tasks and land their next job.</p>
+
+            <a href="https://play.google.com/store/apps/details?id=com.karim.jobtasker" target="_blank"
+                class="inline-flex items-center gap-3 bg-white text-primary px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition shadow-2xl transform hover:-translate-y-1">
+                <i class="fab fa-google-play text-2xl"></i>
+                <div class="text-left">
+                    <div class="text-xs font-normal opacity-80">GET IT ON</div>
+                    <div class="leading-none">Google Play</div>
+                </div>
+            </a>
+
+            <p class="mt-6 text-sm text-blue-200">Free to download. No credit card needed.</p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12 dark:bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-4">
+                        <img src="assets/app_icon.png" alt="Logo" class="w-8 h-8 opacity-90">
+                        <span class="font-bold text-2xl">JobTasker</span>
+                    </div>
+                    <p class="text-gray-400 text-sm max-w-xs mx-auto md:mx-0">Helping you stay organized and reach
+                        your career goals, one task at a time.</p>
+                </div>
+                <div class="flex gap-8 text-sm text-gray-400">
+                    <a href="privacy-policy.html" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="hover:text-white transition">Terms of Service</a>
+                    <a href="#contact" class="hover:text-white transition">Contact Us</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-500">
+                &copy; 2026 JobTasker. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Animation CSS -->
+    <style>
+        @keyframes blob {
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+        }
+
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+
+        .animate-bounce-slow {
+            animation: bounce 3s infinite;
+        }
+    </style>
+</body>
+
+</html>

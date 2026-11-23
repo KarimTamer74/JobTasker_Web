@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - JobTasker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1F21A8',
+                        secondary: '#4e5ae8',
+                        background: '#F8FBFC',
+                        dark: '#363636',
+                        light: '#F9FAFB',
+                        accent: '#8687E7',
+                        // Dark mode specific colors
+                        darkBackground: '#111827',
+                        darkCard: '#1F2937',
+                        darkText: '#F3F4F6',
+                        darkMuted: '#9CA3AF'
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        // Check local storage or system preference on load
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background text-dark antialiased dark:bg-darkBackground dark:text-darkText transition-colors duration-300">
+
+    <!-- Navigation -->
+    <nav
+        class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 dark:bg-darkCard/80 dark:border-gray-700 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="assets/app_icon.png" alt="JobTasker Logo" class="h-10 w-10">
+                    <span class="font-bold text-2xl text-primary dark:text-white">JobTasker</span>
+                </a>
+                <div class="hidden md:flex gap-8 items-center">
+                    <a href="index.html#features"
+                        class="font-semibold text-gray-600 hover:text-primary transition dark:text-gray-300 dark:hover:text-white">Features</a>
+                    <a href="index.html#how-it-works"
+                        class="font-semibold text-gray-600 hover:text-primary transition dark:text-gray-300 dark:hover:text-white">How
+                        it Works</a>
+                    <a href="app-gallery.html"
+                        class="font-semibold text-gray-600 hover:text-primary transition dark:text-gray-300 dark:hover:text-white">Gallery</a>
+                    <a href="index.html#contact"
+                        class="font-semibold text-gray-600 hover:text-primary transition dark:text-gray-300 dark:hover:text-white">Contact</a>
+
+                    <!-- Dark Mode Toggle -->
+                    <button onclick="toggleDarkMode()"
+                        class="p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-yellow-300 dark:hover:bg-gray-600 transition"
+                        aria-label="Toggle Dark Mode">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+                <a href="https://play.google.com/store/apps/details?id=com.karim.jobtasker" target="_blank"
+                    class="bg-primary text-white px-6 py-2.5 rounded-full font-bold hover:bg-blue-800 transition shadow-lg shadow-blue-500/30 transform hover:scale-105 duration-200">
+                    Get App
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-4 py-32">
+        <div
+            class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-gray-100 dark:bg-darkCard dark:border-gray-700 transition-colors duration-300">
+            <h1 class="text-4xl font-extrabold mb-8 text-gray-900 dark:text-white">Privacy Policy</h1>
+
+            <div class="prose prose-lg text-gray-600 dark:text-gray-300 max-w-none">
+                <p class="mb-6">At JobTasker, we take your privacy seriously. This Privacy Policy explains how we
+                    collect, use, and protect your information.</p>
+
+                <h2 class="text-2xl font-bold text-gray-800 mt-8 mb-4 dark:text-white">1. Information We Collect</h2>
+                <p class="mb-4">We prioritize collecting minimal data necessary for the app's functionality:</p>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li><strong>Task Data:</strong> Your tasks, categories, and focus sessions are stored locally on
+                        your device.</li>
+                    <li><strong>Job Applications:</strong> Details about your job applications are stored locally.</li>
+                    <li><strong>Usage Data:</strong> We may collect anonymous usage statistics to improve app
+                        performance (e.g., crash logs).</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-gray-800 mt-8 mb-4 dark:text-white">2. Local Storage</h2>
+                <p class="mb-6">JobTasker is designed as a "Local First" application. This means effectively all your
+                    personal data (tasks, job entries) remains on your device and is not synced to our servers unless
+                    you explicitly use a cloud backup feature (if available in future versions).</p>
+
+                <h2 class="text-2xl font-bold text-gray-800 mt-8 mb-4 dark:text-white">3. Third-Party Services</h2>
+                <p class="mb-6">We use Google AdMob to display advertisements. AdMob may collect data to provide
+                    personalized ads. You can manage your ad preferences through your device settings.</p>
+
+                <h2 class="text-2xl font-bold text-gray-800 mt-8 mb-4 dark:text-white">4. Data Security</h2>
+                <p class="mb-6">Since your data is stored locally, it is protected by your device's security measures
+                    (passcode, biometrics). We recommend keeping your device secure.</p>
+
+                <h2 class="text-2xl font-bold text-gray-800 mt-8 mb-4 dark:text-white">5. Changes to This Policy</h2>
+                <p class="mb-6">We may update this policy from time to time. We will notify you of any changes by
+                    posting the new Privacy Policy on this page.</p>
+
+                <h2 class="text-2xl font-bold text-gray-800 mt-8 mb-4 dark:text-white">6. Contact Us</h2>
+                <p class="mb-6">If you have any questions about this Privacy Policy, please contact us at:</p>
+                <a href="mailto:karimabokamel74@gmail.com"
+                    class="text-primary font-bold hover:underline dark:text-blue-400">karimabokamel74@gmail.com</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 dark:bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-4">
+                        <img src="assets/app_icon.png" alt="Logo" class="w-8 h-8 opacity-90">
+                        <span class="font-bold text-2xl">JobTasker</span>
+                    </div>
+                    <p class="text-gray-400 text-sm max-w-xs mx-auto md:mx-0">Helping you organize your life and career,
+                        one task at a time.</p>
+                </div>
+                <div class="flex gap-8 text-sm text-gray-400">
+                    <a href="privacy-policy.html" class="text-white font-bold transition">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="hover:text-white transition">Terms of Service</a>
+                    <a href="index.html#contact" class="hover:text-white transition">Contact Us</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-500">
+                &copy; 2026 JobTasker. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

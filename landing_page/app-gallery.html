@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Gallery - JobTasker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1F21A8',
+                        secondary: '#4e5ae8',
+                        background: '#F8FBFC',
+                        dark: '#363636',
+                        light: '#F9FAFB',
+                        accent: '#8687E7',
+                        // Dark mode specific colors
+                        darkBackground: '#111827',
+                        darkCard: '#1F2937',
+                        darkText: '#F3F4F6'
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        // Check local storage or system preference on load
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+
+        function scrollContainer(containerId, direction) {
+            const container = document.getElementById(containerId);
+            const scrollAmount = 350; // Approx card width + gap
+            if (direction === 'left') {
+                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background text-dark antialiased dark:bg-darkBackground dark:text-darkText transition-colors duration-300">
+
+    <!-- Navigation -->
+    <nav
+        class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 dark:bg-darkCard/80 dark:border-gray-700 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="assets/app_icon.png" alt="JobTasker Logo" class="h-10 w-10">
+                    <span class="font-bold text-2xl text-primary dark:text-white">JobTasker</span>
+                </a>
+                <div class="hidden md:flex gap-8 items-center">
+                    <a href="index.html#features"
+                        class="font-semibold text-gray-600 hover:text-primary transition dark:text-gray-300 dark:hover:text-white">Features</a>
+                    <a href="index.html#how-it-works"
+                        class="font-semibold text-gray-600 hover:text-primary transition dark:text-gray-300 dark:hover:text-white">How
+                        it Works</a>
+                    <a href="app-gallery.html" class="font-semibold text-primary transition dark:text-white">Gallery</a>
+                    <a href="index.html#contact"
+                        class="font-semibold text-gray-600 hover:text-primary transition dark:text-gray-300 dark:hover:text-white">Contact</a>
+
+                    <!-- Dark Mode Toggle -->
+                    <button onclick="toggleDarkMode()"
+                        class="p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-yellow-300 dark:hover:bg-gray-600 transition"
+                        aria-label="Toggle Dark Mode">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+                <a href="https://play.google.com/store/apps/details?id=com.karim.jobtasker" target="_blank"
+                    class="bg-primary text-white px-6 py-2.5 rounded-full font-bold hover:bg-blue-800 transition shadow-lg shadow-blue-500/30 transform hover:scale-105 duration-200">
+                    Get App
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="pt-32 pb-16 bg-white dark:bg-darkBackground transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 dark:text-white">Explore JobTasker</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto dark:text-gray-400">Discover how JobTasker helps you
+                organize, focus, and succeed. Swipe to see more.</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section 1: Applications -->
+    <section class="py-16 bg-gray-50 dark:bg-darkCard transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="p-3 bg-blue-100 rounded-2xl text-primary dark:bg-blue-900/30 dark:text-blue-400">
+                    <i class="fas fa-briefcase text-2xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Applications Tracking</h2>
+            </div>
+
+            <div class="relative group">
+                <!-- Arrows -->
+                <button onclick="scrollContainer('gallery-apps', 'left')"
+                    class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white dark:bg-gray-700 text-gray-800 dark:text-white p-3 rounded-full shadow-lg z-10 opacity-0 group-hover:opacity-100 transition duration-300 hover:scale-110 focus:outline-none">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="scrollContainer('gallery-apps', 'right')"
+                    class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white dark:bg-gray-700 text-gray-800 dark:text-white p-3 rounded-full shadow-lg z-10 opacity-0 group-hover:opacity-100 transition duration-300 hover:scale-110 focus:outline-none">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <!-- Scroll Container -->
+                <div id="gallery-apps"
+                    class="flex overflow-x-auto gap-6 hide-scrollbar scroll-smooth p-4 -m-4 snap-x snap-mandatory">
+                    <!-- Item 1 (User modified) -->
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/dashboard_no_content_light.png" alt="Applications View"
+                            class="h-[500px] w-auto">
+                    </div>
+                    <!-- Item 2 -->
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/add_app2_light.png" alt="Add Application" class="h-[500px] w-auto">
+                    </div>
+                    <!-- Item 3 -->
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/add_app1_light.png" alt="Application Details" class="h-[500px] w-auto">
+                    </div>
+                    <!-- Item 4 -->
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/add_app2_dark.png" alt="Edit Application" class="h-[500px] w-auto">
+                    </div>
+                    <!-- Item 5 (Extra for scroll testing) -->
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/add_app4_light.png" alt="Application Status" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/add_app_success_dark.png" alt="Application Status"
+                            class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/dashboard_content_dark.png" alt="Application Status"
+                            class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/app_details_dark.png" alt="Application Status" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/share_app_light.png" alt="Application Status" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/edit_app_dark.png" alt="Application Status" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/delete_app_dark.png" alt="Application Status" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/app_view.png" alt="Application Status" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/app_search.png" alt="Application Status" class="h-[500px] w-auto">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section 2: My Tasks -->
+    <section class="py-16 bg-white dark:bg-darkBackground transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="p-3 bg-green-100 rounded-2xl text-green-600 dark:bg-green-900/30 dark:text-green-400">
+                    <i class="fas fa-check-circle text-2xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Task Management</h2>
+            </div>
+            <div class="relative group">
+                <button onclick="scrollContainer('gallery-tasks', 'left')"
+                    class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white dark:bg-gray-700 text-gray-800 dark:text-white p-3 rounded-full shadow-lg z-10 opacity-0 group-hover:opacity-100 transition duration-300 hover:scale-110 focus:outline-none">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="scrollContainer('gallery-tasks', 'right')"
+                    class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white dark:bg-gray-700 text-gray-800 dark:text-white p-3 rounded-full shadow-lg z-10 opacity-0 group-hover:opacity-100 transition duration-300 hover:scale-110 focus:outline-none">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div id="gallery-tasks"
+                    class="flex overflow-x-auto gap-6 hide-scrollbar scroll-smooth p-4 -m-4 snap-x snap-mandatory">
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/add_task_light.png" alt="Task List" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/add_task2_light.png" alt="Add Task" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/category_light.png" alt="Task Details" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/add_task_success_light.png" alt="Task Details" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/tasks_view_light.png" alt="Task Categories" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/tasks_view_dark.png" alt="Task Categories" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/details_dark.png" alt="Task Categories" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/edit_task_dark.png" alt="Task Categories" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/update_task_dark.png" alt="Task Categories" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/delete_task_dark.png" alt="Task Categories" class="h-[500px] w-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section 3: Focus Mode -->
+    <section class="py-16 bg-gray-50 dark:bg-darkCard transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="p-3 bg-yellow-100 rounded-2xl text-yellow-600 dark:bg-yellow-900/30 dark:text-yellow-400">
+                    <i class="fas fa-bolt text-2xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Focus Mode</h2>
+            </div>
+            <div class="relative group">
+                <button onclick="scrollContainer('gallery-focus', 'left')"
+                    class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white dark:bg-gray-700 text-gray-800 dark:text-white p-3 rounded-full shadow-lg z-10 opacity-0 group-hover:opacity-100 transition duration-300 hover:scale-110 focus:outline-none">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="scrollContainer('gallery-focus', 'right')"
+                    class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white dark:bg-gray-700 text-gray-800 dark:text-white p-3 rounded-full shadow-lg z-10 opacity-0 group-hover:opacity-100 transition duration-300 hover:scale-110 focus:outline-none">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div id="gallery-focus"
+                    class="flex overflow-x-auto gap-6 hide-scrollbar scroll-smooth p-4 -m-4 snap-x snap-mandatory">
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/focus_light.png" alt="Focus Timer" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/focus_dark.png" alt="Focus Settings" class="h-[500px] w-auto">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section 4: Settings -->
+    <section class="py-16 bg-white dark:bg-darkBackground transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="p-3 bg-purple-100 rounded-2xl text-purple-600 dark:bg-purple-900/30 dark:text-purple-400">
+                    <i class="fas fa-cog text-2xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Settings & Customization</h2>
+            </div>
+            <div class="relative group">
+                <button onclick="scrollContainer('gallery-settings', 'left')"
+                    class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white dark:bg-gray-700 text-gray-800 dark:text-white p-3 rounded-full shadow-lg z-10 opacity-0 group-hover:opacity-100 transition duration-300 hover:scale-110 focus:outline-none">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="scrollContainer('gallery-settings', 'right')"
+                    class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white dark:bg-gray-700 text-gray-800 dark:text-white p-3 rounded-full shadow-lg z-10 opacity-0 group-hover:opacity-100 transition duration-300 hover:scale-110 focus:outline-none">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div id="gallery-settings"
+                    class="flex overflow-x-auto gap-6 hide-scrollbar scroll-smooth p-4 -m-4 snap-x snap-mandatory">
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/settings_dark.png" alt="Settings Menu" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/lang_dark.png" alt="Theme Selection" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/about_dark.png" alt="Notifications" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/faq_dark.png" alt="Notifications" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/help_dark.png" alt="Notifications" class="h-[500px] w-auto">
+                    </div>
+                    <div
+                        class="shrink-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 snap-center transition transform hover:scale-[1.02]">
+                        <img src="assets/shots/rate_dark.png" alt="Notifications" class="h-[500px] w-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 dark:bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-2 mb-4">
+                        <img src="assets/app_icon.png" alt="Logo" class="w-8 h-8 opacity-90">
+                        <span class="font-bold text-2xl">JobTasker</span>
+                    </div>
+                    <p class="text-gray-400 text-sm max-w-xs mx-auto md:mx-0">Helping you organize your life and career,
+                        one task at a time.</p>
+                </div>
+                <div class="flex gap-8 text-sm text-gray-400">
+                    <a href="privacy-policy.html" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="hover:text-white transition">Terms of Service</a>
+                    <a href="index.html#contact" class="hover:text-white transition">Contact Us</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-500">
+                &copy; 2026 JobTasker. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
